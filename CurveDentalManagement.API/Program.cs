@@ -1,3 +1,7 @@
+using CurveDentalManagement.API.Data;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,6 +23,13 @@ if (string.IsNullOrEmpty(connectionString))
 
 // Add connection string to the application's configuration system
 builder.Configuration.AddInMemoryCollection(new Dictionary<string, string> { { "ConnectionStrings:CurveDentalAppConnectionString", connectionString } });
+
+// inject DbContect Into Application
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CurveDentalAppConnectionString"));
+});
+
 
 var app = builder.Build();
 
