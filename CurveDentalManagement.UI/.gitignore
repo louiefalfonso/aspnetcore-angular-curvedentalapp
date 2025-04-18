@@ -44,4 +44,5 @@ Thumbs.db
 .vscode
 .env
 
+# environment files
 /src/environments
