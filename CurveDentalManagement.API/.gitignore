@@ -2,3 +2,7 @@
 .vs
 .env
 .jfm
+
+bin
+obj
+packages

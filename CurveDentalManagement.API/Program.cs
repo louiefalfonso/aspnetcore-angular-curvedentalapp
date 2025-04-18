@@ -1,20 +1,47 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+
+// Add & Configure Swagger
+builder.Services.AddSwaggerGen();
+
+// Load .env file
+DotNetEnv.Env.Load();
+
+// Configure connection string from environment variable
+var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings_CurveDentalApp");
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new Exception("Connection string not found. Ensure the .env file is correctly configured and placed in the root directory.");
+}
+
+// Add connection string to the application's configuration system
+builder.Configuration.AddInMemoryCollection(new Dictionary<string, string> { { "ConnectionStrings:CurveDentalAppConnectionString", connectionString } });
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("swagger/v1/swagger.json", "API V1");
+        c.RoutePrefix = string.Empty;
+    });
 }
 
 app.UseHttpsRedirection();
+
+// Add & Setup CORS Policy
+app.UseCors(options =>
+{
+    options.AllowAnyHeader();
+    options.AllowAnyOrigin();
+    options.AllowAnyMethod();
+});
 
 app.UseAuthorization();
 
