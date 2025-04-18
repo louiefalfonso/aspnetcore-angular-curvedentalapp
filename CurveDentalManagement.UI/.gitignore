@@ -43,3 +43,5 @@ Thumbs.db
 .qodo
 .vscode
 .env
+
+/src/environments
