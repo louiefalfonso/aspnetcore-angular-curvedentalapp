@@ -1,6 +1,7 @@
 using CurveDentalManagement.API.Data;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using CurveDentalManagement.API.Repositories.Interface;
+using CurveDentalManagement.API.Repositories.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CurveDentalAppConnectionString"));
 });
 
+// inject repository into Application
+builder.Services.AddScoped<IStaffRepository, StaffRepository>();
 
 var app = builder.Build();
 

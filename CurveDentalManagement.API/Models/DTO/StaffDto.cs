@@ -1,6 +1,6 @@
-﻿namespace CurveDentalManagement.API.Model.Model
+﻿namespace CurveDentalManagement.API.Models.DTO
 {
-    public class Staff
+    public class StaffDto
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }

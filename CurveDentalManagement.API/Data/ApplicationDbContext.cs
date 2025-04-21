@@ -1,4 +1,5 @@
-﻿using CurveDentalManagement.API.Model.Model;
+﻿
+using CurveDentalManagement.API.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace CurveDentalManagement.API.Data
