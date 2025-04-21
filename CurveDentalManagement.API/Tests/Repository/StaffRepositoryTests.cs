@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.ComponentModel;
+using System.Net;
 using System.Numerics;
 using CurveDentalManagement.API.Data;
 using CurveDentalManagement.API.Models.Domain;
@@ -6,7 +7,7 @@ using CurveDentalManagement.API.Repositories.Implementation;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
-namespace CurveDentalManagement.API.Tests
+namespace CurveDentalManagement.API.Tests.Repository
 {
     public class StaffRepositoryTests
     {
@@ -54,7 +55,6 @@ namespace CurveDentalManagement.API.Tests
             Assert.Equal(staff.FirstName, result.FirstName);
             Assert.Equal(staff.LastName, result.LastName);
         }
-
 
         [Fact]
         public async Task GetByIdAsync_Success()
