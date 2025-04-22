@@ -1,21 +1,21 @@
 <div role="button" class="d-lg-none d-flex py-2 px-3 align-items-center text-body sidebar-collapsed">
-    <span class="me-auto">Menu</span>
-    <button aria-controls="doc-nav" aria-label="Toggle documentation navigation" class="btn btn-link p-0" type="button" (click)="toggleMobileMenu()" [attr.aria-expanded]="isMobileMenuOpen">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false" class="align-middle">
-        <title>Menu</title>
-        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
-      </svg>
-    </button>
+  <span class="me-auto">Menu</span>
+  <button aria-controls="doc-nav" aria-label="Toggle documentation navigation" class="btn btn-link p-0" type="button" (click)="toggleMobileMenu()" [attr.aria-expanded]="isMobileMenuOpen">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false" class="align-middle">
+      <title>Menu</title>
+      <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
+    </svg>
+  </button>
+</div>
+<nav class="toc d-lg-block py-lg-5 px-lg-3 sidebar collapse" [ngClass]="{'show': isMobileMenuOpen, 'hidden': !isMobileMenuOpen}">
+  <div class="toc-item mb-3">
+    <ul class="nav flex-column">
+      <li><a class="toc-link mb-3" href="#">Dashboard</a></li>
+      <li><a class="toc-link mb-3" href="#">Staffs</a></li>
+      <li><a class="toc-link mb-3" href="#">Patients</a></li>
+      <li><a class="toc-link mb-3" href="#">Treatments</a></li>
+      <li><a class="toc-link mb-3" href="#">Appointments</a></li>
+      <li><a class="toc-link mb-3" href="#">Logout</a></li>
+    </ul>
   </div>
-  <nav class="toc py- d-lg-block py-3 sidebar collapse" [ngClass]="{'show': isMobileMenuOpen, 'hidden': !isMobileMenuOpen}">
-    <div class="toc-item mb-3">
-      <ul class="nav flex-column">
-        <li><a class="toc-link mb-3" href="#">Dashboard</a></li>
-        <li><a class="toc-link mb-3" href="#">Staffs</a></li>
-        <li><a class="toc-link mb-3" href="#">Patients</a></li>
-        <li><a class="toc-link mb-3" href="#">Treatments</a></li>
-        <li><a class="toc-link mb-3" href="#">Appointments</a></li>
-        <li><a class="toc-link mb-3" href="#">Logout</a></li>
-      </ul>
-    </div>
-  </nav>
+</nav>

@@ -1,9 +1,8 @@
-import { Component, ViewEncapsulation} from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
-  imports: [NgbModule],
+  imports: [],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
 })

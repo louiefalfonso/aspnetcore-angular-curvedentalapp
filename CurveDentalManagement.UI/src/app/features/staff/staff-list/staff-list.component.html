@@ -1,27 +1,47 @@
-<header class="bg-body-tertiary pt-4 pb-md-2 px-4 px-lg-5 d-flex d-md-block  title">
-  <h1 class="mb-4 me-auto me-md-none">Staff Lists</h1>
+<header class="bg-body-tertiary pt-3 pb-md-3 px-3 px-lg-5 d-flex d-md-block title justify-content-center">
+  <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between">
+    <!-- Add Patient Button -->
+    <button class="btn btn-success mb-2">
+      Add New Staff
+    </button>
+
+    <!-- Search Box and Buttons -->
+    <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2">
+      <input type="text" class="form-control" />
+      <button type="button" class="btn btn-primary">Search</button>
+      <button type="button" class="btn btn-dark">Reset</button>
+    </div>
+  </div>
 </header>
 <div class="card m-4">
   <div class="card-body">
     <ng-container *ngIf="staffs$ | async as staffs">
       <div class="overflow-x-auto">
         <table class="table table-striped">
-          <thead>
+          <thead class="text-nowrap text-center">
             <tr>
               <th scope="col">Full Name</th>
               <th scope="col">Role/ Position</th>
               <th scope="col">Email</th>
               <th scope="col">Phone Number</th>
               <th scope="col">Address</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="text-center">
             <tr *ngFor="let staff of staffs">
               <td>{{ staff.firstName }} {{ staff.lastName }}</td>
               <td>{{ staff.staffRole }}</td>
               <td>{{ staff.email }}</td>
               <td>{{ staff.phone }}</td>
               <td>{{ staff.address }}</td>
+              <td>
+                <button type="button" class="btn btn-custom-outline">View</button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-custom">Update</button>
+              </td>
             </tr>
           </tbody>
         </table>
