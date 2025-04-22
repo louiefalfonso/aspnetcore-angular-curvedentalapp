@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+.currentColor{
+    background-color: #fe5f00;
+}
+
+.btn-custom {
+    background-color: #fe5f00;
+    border-color: #fe5f00; 
+    color: #ffffff; 
+}
+
+.btn-custom:hover {
+    background-color: #e65500; 
+    border-color: #e65500; 
+    color: #ffffff; 
+}
+
+.btn-custom-outline {
+    background-color: transparent;
+    border: 1px solid #fe5f00; 
+    color: #fe5f00; 
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+.btn-custom-outline:hover {
+    background-color: #fe5f00; 
+    color: #ffffff;
+}
+
+.btn-custom-outline:focus {
+    outline: 2px solid #ff8c42; 
+    outline-offset: 2px; 
+}

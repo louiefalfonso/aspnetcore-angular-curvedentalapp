@@ -1,0 +1,25 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+}
+
+.row.flex-xl-nowrap {
+    flex: 1; 
+    display: flex;
+}
+
+.col-12.col-lg-10 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.container-fluid, .outlet, .header-top{
+    padding: 0;
+}
