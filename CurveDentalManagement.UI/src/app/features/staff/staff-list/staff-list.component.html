@@ -1,23 +1,31 @@
-<ng-container *ngIf="staffs$ | async as staffs">
-  <table class="table table-striped">
-    <thead>
-		<tr>
-			<th scope="col">Fulll Name</th>
-			<th scope="col">Role/ Position</th>
-			<th scope="col">Email</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Address</th>
-		</tr>
-	</thead>
-    <tbody>
-        <tr *ngFor="let staff of staffs">
-            <td>{{ staff.firstName }} {{ staff.lastName }}</td>
-            <td>{{ staff.staffRole }}</td>
-            <td>{{ staff.email }}</td>
-            <td>{{ staff.phone }}</td>
-            <td>{{ staff.address }}</td>
-        </tr>
-    </tbody>
-  </table>
-   
-</ng-container>
+<header class="bg-body-tertiary pt-4 pb-md-2 px-4 px-lg-5 d-flex d-md-block  title">
+  <h1 class="mb-4 me-auto me-md-none">Staff Lists</h1>
+</header>
+<div class="card m-4">
+  <div class="card-body">
+    <ng-container *ngIf="staffs$ | async as staffs">
+      <div class="overflow-x-auto">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Full Name</th>
+              <th scope="col">Role/ Position</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let staff of staffs">
+              <td>{{ staff.firstName }} {{ staff.lastName }}</td>
+              <td>{{ staff.staffRole }}</td>
+              <td>{{ staff.email }}</td>
+              <td>{{ staff.phone }}</td>
+              <td>{{ staff.address }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
+  </div>
+</div>

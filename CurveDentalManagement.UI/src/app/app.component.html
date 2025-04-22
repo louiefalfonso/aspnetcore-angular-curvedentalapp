@@ -1,1 +1,12 @@
-<router-outlet />
+<app-header />
+<div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-lg-2 border-end">
+            <app-sidebar/>
+        </div>
+        <div class="col-12 col-lg-10 outlet">
+            <router-outlet />
+        </div>
+    </div>
+    <app-footer />
+</div>
