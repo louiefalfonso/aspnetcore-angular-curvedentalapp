@@ -9,5 +9,6 @@ namespace CurveDentalManagement.API.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {}
         public DbSet<Staff> Staffs { get; set; }
+        public DbSet<Patient> Patients { get; set; }
     }
 }

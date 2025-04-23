@@ -33,6 +33,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // inject repository into Application
 builder.Services.AddScoped<IStaffRepository, StaffRepository>();
+builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 
 var app = builder.Build();
 
