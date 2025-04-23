@@ -1,9 +1,7 @@
 <header class="bg-body-tertiary pt-3 pb-md-3 px-3 px-lg-5 d-flex d-md-block title justify-content-center">
   <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between">
     <!-- Add Patient Button -->
-    <button class="btn btn-success mb-2">
-      Add New Staff
-    </button>
+    <button class="btn btn-success ms-2 mb-2" [routerLink]="['/admin/staffs/add']">Add New Staff</button>
 
     <!-- Search Box and Buttons -->
     <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2">
@@ -51,7 +49,7 @@
                 <button type="button" class="btn btn-custom-outline">View</button>
               </td>
               <td>
-                <button type="button" class="btn btn-custom">Update</button>
+                <button type="button" class="btn btn-custom" [routerLink]="['/admin/staffs', staff.id]">Update</button>
               </td>
             </tr>
           </tbody>
@@ -59,25 +57,23 @@
       </div>
     </ng-container>
   </div>
-
-<!-- Pagination -->
-<div class="overflow-x-auto">
-  <div class="d-flex justify-content-center">
-    <div class="pagination-container">
-      <ngb-pagination
-        [collectionSize]="totalCount"
-        [(page)]="pageNumber"
-        [pageSize]="pageSize"
-        [maxSize]="10"
-        aria-label="Pagination"
-        [directionLinks]="false"
-        class="isolate inline-flex -space-x-px rounded-md shadow-xs"
-        (pageChange)="getPage($event)"
-      >
-      </ngb-pagination>
+  <!-- Pagination -->
+  <div class="overflow-x-auto">
+    <div class="d-flex justify-content-center">
+      <div class="pagination-container">
+        <ngb-pagination
+          [collectionSize]="totalCount"
+          [(page)]="pageNumber"
+          [pageSize]="pageSize"
+          [maxSize]="10"
+          aria-label="Pagination"
+          [directionLinks]="false"
+          class="isolate inline-flex -space-x-px rounded-md shadow-xs"
+          (pageChange)="getPage($event)"
+        >
+        </ngb-pagination>
+      </div>
     </div>
   </div>
-</div>
-  
 </div>
 

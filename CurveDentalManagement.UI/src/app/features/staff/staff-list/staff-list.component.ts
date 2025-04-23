@@ -37,25 +37,7 @@ export class StaffListComponent implements OnInit {
     this.loadStaffs();
   }
 
-  // Load staffs and update total count
-  /*loadStaffs(query?: string, sortBy?: string, sortDirection?: string): void {
-    this.staffService.getStaffCount().subscribe({
-      next: (value) => {
-        this.totalCount = value || 0; 
-        this.list = new Array(Math.ceil(this.totalCount / this.pageSize));
-
-        this.staffs$ = this.staffService.getAllStaffs(
-          query,
-          sortBy,
-          sortDirection,
-          this.pageNumber,
-          this.pageSize
-        );
-      }
-    });
-  }*/
-
-    loadStaffs(query?: string, sortBy?: string, sortDirection?: string): void {
+  loadStaffs(query?: string, sortBy?: string, sortDirection?: string): void {
       this.staffService.getStaffCount().subscribe({
         next: (value) => {
           this.totalCount = value || 0; 
@@ -73,7 +55,7 @@ export class StaffListComponent implements OnInit {
           );
         }
       });
-    }
+  }
 
   // Implement search
   onSearch(query: string) {
