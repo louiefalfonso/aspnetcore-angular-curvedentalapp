@@ -1,121 +1,120 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Staff } from '../models/staff.models';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { StaffService } from '../services/staff.service';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { StaffChartComponent } from '../staff-chart/staff-chart.component';
+import { map, catchError } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-staff-list',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, NgbPaginationModule, StaffChartComponent],
   templateUrl: './staff-list.component.html',
-  styleUrl: './staff-list.component.css'
+  styleUrls: ['./staff-list.component.css']
 })
-export class StaffListComponent implements OnInit{
+export class StaffListComponent implements OnInit {
 
-     // use asnyc pipe instead of subscription
-     staffs$?: Observable<Staff[]>;
+  // Use async pipe instead of subscription
+  staffs$?: Observable<Staff[]>;
 
-     // for sorting, filtering & pagination
-     totalCount?: number;
-     list: number[] = [];
-     pageNumber = 1;
-     pageSize = 10;
-   
-     // add constructor
-     constructor(
-       private staffService: StaffService,
-       private route: ActivatedRoute
-     ) { }
+  // For sorting, filtering & pagination
+  totalCount: number = 0;
+  list: number[] = [];
+  pageNumber = 1;
+  pageSize = 10;
 
+  // Add constructor
+  constructor(
+    private staffService: StaffService,
+    private route: ActivatedRoute
+  ) { }
 
-  // implement ngOnInit lifecycle hook
+  // Implement ngOnInit lifecycle hook
   ngOnInit(): void {
-    this.staffService.getStaffCount()
-   .subscribe({
+    this.loadStaffs();
+  }
+
+  // Load staffs and update total count
+  /*loadStaffs(query?: string, sortBy?: string, sortDirection?: string): void {
+    this.staffService.getStaffCount().subscribe({
       next: (value) => {
-        this.totalCount = value;
-         this.list = new Array(Math.ceil(value / this.pageSize))
+        this.totalCount = value || 0; 
+        this.list = new Array(Math.ceil(this.totalCount / this.pageSize));
 
-         this.staffs$ = this.staffService.getAllStaffs(
-           undefined,
-           undefined,
-           undefined,
-           this.pageNumber,
-           this.pageSize
-         );
+        this.staffs$ = this.staffService.getAllStaffs(
+          query,
+          sortBy,
+          sortDirection,
+          this.pageNumber,
+          this.pageSize
+        );
       }
-    })
-  }
+    });
+  }*/
 
-  // implement search
+    loadStaffs(query?: string, sortBy?: string, sortDirection?: string): void {
+      this.staffService.getStaffCount().subscribe({
+        next: (value) => {
+          this.totalCount = value || 0; 
+          this.list = new Array(Math.ceil(this.totalCount / this.pageSize));
+    
+          this.staffs$ = this.staffService.getAllStaffs(
+            query,
+            sortBy,
+            sortDirection,
+            this.pageNumber,
+            this.pageSize
+          ).pipe(
+            map((staffs: Staff[] | null) => staffs ?? []),
+            catchError(() => of([]))
+          );
+        }
+      });
+    }
+
+  // Implement search
   onSearch(query: string) {
-    this.staffs$ = this.staffService.getAllStaffs(query);
-  }
-
-  //implement reset
-  onReset(queryText: HTMLInputElement): void {
-    queryText.value = ''; 
     this.pageNumber = 1; 
-    this.staffs$ = this.staffService.getAllStaffs(
-      undefined,
-      undefined,
-      undefined,
-      this.pageNumber,
-      this.pageSize
-    ); 
+    this.loadStaffs(query);
   }
 
-  // implement sorting
+  // Implement reset
+  onReset(queryText: HTMLInputElement): void {
+    queryText.value = '';
+    this.pageNumber = 1;
+    this.loadStaffs();
+  }
+
+  // Implement sorting
   sort(sortBy: string, sortDirection: string) {
-    this.staffs$ = this.staffService.getAllStaffs(undefined, sortBy, sortDirection);
+    this.pageNumber = 1; 
+    this.loadStaffs(undefined, sortBy, sortDirection);
   }
 
-  // implement getPage
+  // Implement getPage
   getPage(pageNumber: number) {
     this.pageNumber = pageNumber;
-
-    this.staffs$ = this.staffService.getAllStaffs(
-      undefined,
-      undefined,
-      undefined,
-      this.pageNumber,
-      this.pageSize
-    );
+    this.loadStaffs();
   }
 
-  
-  // implement getNextPage
+  // Implement getNextPage
   getNextPage() {
     if (this.pageNumber + 1 > this.list.length) {
       return;
     }
-
     this.pageNumber += 1;
-    this.staffs$ = this.staffService.getAllStaffs(
-      undefined,
-      undefined,
-      undefined,
-      this.pageNumber,
-      this.pageSize
-    );
+    this.loadStaffs();
   }
 
-  // implemennt getPrevPage
+  // Implement getPrevPage
   getPrevPage() {
     if (this.pageNumber - 1 < 1) {
       return;
     }
-
     this.pageNumber -= 1;
-    this.staffs$ = this.staffService.getAllStaffs(
-      undefined,
-      undefined,
-      undefined,
-      this.pageNumber,
-      this.pageSize
-    );
+    this.loadStaffs();
   }
-
-
 }
