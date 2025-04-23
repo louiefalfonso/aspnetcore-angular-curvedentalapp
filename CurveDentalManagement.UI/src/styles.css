@@ -1,3 +1,7 @@
+body {
+    font-family: 'Lato', sans-serif;
+  }
+
 .currentColor{
     background-color: #fe5f00;
 }
@@ -29,4 +33,26 @@
 .btn-custom-outline:focus {
     outline: 2px solid #ff8c42; 
     outline-offset: 2px; 
+}
+
+
+.pagination .page-item.active .page-link {
+    background-color: #fe5f00; 
+    border-color: #fe5f00;
+    color: white; 
+}
+  
+.pagination .page-item .page-link {
+    color: #fe5f00; 
+}
+  
+.pagination .page-item .page-link:hover {
+    background-color: #e65500; 
+    border-color: #e65500; 
+    color: white; 
+}
+
+.pagination-container {
+    overflow-x: auto; 
+    white-space: nowrap; 
 }
