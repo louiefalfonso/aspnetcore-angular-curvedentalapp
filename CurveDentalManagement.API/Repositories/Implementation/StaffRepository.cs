@@ -96,7 +96,7 @@ namespace CurveDentalManagement.API.Repositories.Implementation
 
         }
 
-        // Delete Patient & Save Changes
+        // Delete Staff
         public async Task<Staff?> DeleteAsync(Guid id)
         {
             var existingStaff = await dbContext.Staffs.FirstOrDefaultAsync(x => x.Id == id);
