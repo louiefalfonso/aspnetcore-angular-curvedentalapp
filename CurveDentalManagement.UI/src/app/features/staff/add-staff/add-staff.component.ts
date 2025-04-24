@@ -6,10 +6,11 @@ import { AddStaffRequest } from '../models/add-staff-request.models';
 import { Subscription } from 'rxjs';
 import { StaffService } from '../services/staff.service';
 import { HttpClient } from '@angular/common/http';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-staff',
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, NgbToastModule],
   templateUrl: './add-staff.component.html',
   styleUrl: './add-staff.component.css'
 })
