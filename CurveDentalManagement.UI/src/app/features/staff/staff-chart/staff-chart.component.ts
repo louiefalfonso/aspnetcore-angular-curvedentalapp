@@ -17,20 +17,19 @@ export class StaffChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.createBarChart();
-    this.createDoughnutChart();
+    //this.createDoughnutChart();
   }
   
   createBarChart() {
-    const staffRoles = this.staffs.map(staff => staff.staffRole);
-    const uniqueRoles = Array.from(new Set(staffRoles));
-    const roleCounts = uniqueRoles.map(role => staffRoles.filter(r => r === role).length);
+    const staffRoles = this.staffs.map(staff => staff.staffRole); 
+    const uniqueRoles = Array.from(new Set(staffRoles)); 
+    const roleCounts = uniqueRoles.map(role => staffRoles.filter(r => r === role).length); 
   
     this.chart = new Chart('barChart', {
       type: 'bar',
       data: {
         labels: uniqueRoles,
         datasets: [{
-          //label: 'Staff Count',  Removed the label property
           data: roleCounts,
           backgroundColor: [
             'rgba(255, 99, 132, 0.5)',
@@ -66,6 +65,7 @@ export class StaffChartComponent implements OnInit {
     });
   }
   
+  /*
   createDoughnutChart() {
     const staffRoles = this.staffs.map(staff => staff.staffRole);
     const uniqueRoles = Array.from(new Set(staffRoles));
@@ -110,5 +110,6 @@ export class StaffChartComponent implements OnInit {
       }
     });
   }
+  */  
 
 }

@@ -16,7 +16,7 @@
 <div class="card m-4">
   <div class="card-body">
     <ng-container *ngIf="staffs$ | async as staffs">
-      <app-staff-chart [staffs]="staffs"></app-staff-chart>
+      <app-staff-chart [staffs]="allStaffs"></app-staff-chart>
     </ng-container>
   </div>
 </div>

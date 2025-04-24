@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    margin: 0;
+    margin: 0;    
 }
 
 .container-fluid {
@@ -20,6 +20,21 @@ html, body {
     height: 100%;
 }
 
-.container-fluid, .outlet, .header-top{
+.container-fluid, .outlet, .footer{
     padding: 0;
+}
+
+.header-top {
+    padding: 0; 
+    margin: 0; 
+    width: 100%; 
+    box-sizing: border-box;
+    overflow-x: hidden; 
+}
+
+.navbar {
+    padding: 0; 
+    margin: 0;
+    width: 100%; 
+    box-sizing: border-box;
 }

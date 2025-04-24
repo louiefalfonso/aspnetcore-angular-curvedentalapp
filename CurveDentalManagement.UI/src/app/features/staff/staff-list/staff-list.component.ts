@@ -19,6 +19,7 @@ export class StaffListComponent implements OnInit {
 
   // Use async pipe instead of subscription
   staffs$?: Observable<Staff[]>;
+  allStaffs: Staff[] = [];
 
   // For sorting, filtering & pagination
   totalCount: number = 0;
@@ -35,6 +36,7 @@ export class StaffListComponent implements OnInit {
   // Implement ngOnInit lifecycle hook
   ngOnInit(): void {
     this.loadStaffs();
+    this.loadAllStaffs();
   }
 
   loadStaffs(query?: string, sortBy?: string, sortDirection?: string): void {
@@ -44,17 +46,23 @@ export class StaffListComponent implements OnInit {
           this.list = new Array(Math.ceil(this.totalCount / this.pageSize));
     
           this.staffs$ = this.staffService.getAllStaffs(
-            query,
-            sortBy,
-            sortDirection,
+            undefined,
+            undefined,
+            undefined,
             this.pageNumber,
             this.pageSize
-          ).pipe(
-            map((staffs: Staff[] | null) => staffs ?? []),
-            catchError(() => of([]))
           );
         }
       });
+  }
+
+  loadAllStaffs(): void {
+    this.staffService.getAllStaffs().pipe(
+      map((staffs: Staff[] | null) => staffs ?? []), // Replace null with an empty array
+      catchError(() => of([])) // Handle errors by returning an empty array
+    ).subscribe((staffs) => {
+      this.allStaffs = staffs; // Store all staff data
+    });
   }
 
   // Implement search
