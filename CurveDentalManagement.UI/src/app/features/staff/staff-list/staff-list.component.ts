@@ -4,20 +4,19 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Staff } from '../models/staff.models';
 import { Observable, of } from 'rxjs';
 import { StaffService } from '../services/staff.service';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { StaffChartComponent } from '../staff-chart/staff-chart.component';
 import { map, catchError } from 'rxjs/operators';
 
 
 @Component({
   selector: 'app-staff-list',
-  imports: [RouterModule, CommonModule, NgbPaginationModule, StaffChartComponent],
+  imports: [RouterModule, CommonModule, NgbPaginationModule, StaffChartComponent, NgbAlertModule],
   templateUrl: './staff-list.component.html',
   styleUrls: ['./staff-list.component.css']
 })
 export class StaffListComponent implements OnInit {
 
-  // Use async pipe instead of subscription
   staffs$?: Observable<Staff[]>;
   allStaffs: Staff[] = [];
 
@@ -35,16 +34,14 @@ export class StaffListComponent implements OnInit {
 
   // Implement ngOnInit lifecycle hook
   ngOnInit(): void {
-    this.loadStaffs();
     this.loadAllStaffs();
-  }
 
-  loadStaffs(query?: string, sortBy?: string, sortDirection?: string): void {
-      this.staffService.getStaffCount().subscribe({
-        next: (value) => {
-          this.totalCount = value || 0; 
-          this.list = new Array(Math.ceil(this.totalCount / this.pageSize));
-    
+    this.staffService.getStaffCount()
+    .subscribe({
+       next: (value) => {
+         this.totalCount = value;
+          this.list = new Array(Math.ceil(value / this.pageSize))
+ 
           this.staffs$ = this.staffService.getAllStaffs(
             undefined,
             undefined,
@@ -52,42 +49,54 @@ export class StaffListComponent implements OnInit {
             this.pageNumber,
             this.pageSize
           );
-        }
-      });
+       }
+     })
   }
 
+  // Implement loadAllStaffs method for chart display
   loadAllStaffs(): void {
     this.staffService.getAllStaffs().pipe(
-      map((staffs: Staff[] | null) => staffs ?? []), // Replace null with an empty array
-      catchError(() => of([])) // Handle errors by returning an empty array
+      map((staffs: Staff[] | null) => staffs ?? []), 
+      catchError(() => of([])) 
     ).subscribe((staffs) => {
-      this.allStaffs = staffs; // Store all staff data
+      this.allStaffs = staffs; 
     });
   }
-
-  // Implement search
+  
+  // implement search
   onSearch(query: string) {
-    this.pageNumber = 1; 
-    this.loadStaffs(query);
+      this.staffs$ = this.staffService.getAllStaffs(query);
   }
 
-  // Implement reset
+  //implement reset
   onReset(queryText: HTMLInputElement): void {
-    queryText.value = '';
-    this.pageNumber = 1;
-    this.loadStaffs();
+      queryText.value = ''; 
+      this.pageNumber = 1; 
+      this.staffs$ = this.staffService.getAllStaffs(
+        undefined,
+        undefined,
+        undefined,
+        this.pageNumber,
+        this.pageSize
+      ); 
   }
-
-  // Implement sorting
+  
+  // implement sorting
   sort(sortBy: string, sortDirection: string) {
-    this.pageNumber = 1; 
-    this.loadStaffs(undefined, sortBy, sortDirection);
+    this.staffs$ = this.staffService.getAllStaffs(undefined, sortBy, sortDirection);
   }
 
   // Implement getPage
   getPage(pageNumber: number) {
     this.pageNumber = pageNumber;
-    this.loadStaffs();
+
+    this.staffs$ = this.staffService.getAllStaffs(
+      undefined,
+      undefined,
+      undefined,
+      this.pageNumber,
+      this.pageSize
+    );
   }
 
   // Implement getNextPage
@@ -95,16 +104,29 @@ export class StaffListComponent implements OnInit {
     if (this.pageNumber + 1 > this.list.length) {
       return;
     }
-    this.pageNumber += 1;
-    this.loadStaffs();
-  }
 
-  // Implement getPrevPage
+    this.pageNumber += 1;
+    this.staffs$ = this.staffService.getAllStaffs(
+      undefined,
+      undefined,
+      undefined,
+      this.pageNumber,
+      this.pageSize
+    );
+  }
+  // implemennt getPrevPage
   getPrevPage() {
     if (this.pageNumber - 1 < 1) {
       return;
     }
+
     this.pageNumber -= 1;
-    this.loadStaffs();
+    this.staffs$ = this.staffService.getAllStaffs(
+      undefined,
+      undefined,
+      undefined,
+      this.pageNumber,
+      this.pageSize
+    );
   }
 }

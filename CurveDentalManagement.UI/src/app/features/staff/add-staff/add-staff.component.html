@@ -1,10 +1,10 @@
 <header class="bg-body-tertiary pt-3 pb-md-3 px-3 px-lg-5 d-flex d-md-block title justify-content-center">
-    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between">
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between mb-3" >
       <!-- Title -->
-      <h1 class="start me-auto me-md-none h3">Add New Staff</h1>
+      <h1 class="start me-auto me-md-none h3 px-3">Add New Staff Form</h1>
   
       <!-- Back Button -->
-      <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2 mb-3">
+      <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2 px-3">
         <button type="button" class="btn btn-dark" [routerLink]="['/admin/staffs']">Back</button>
       </div>
     </div>
@@ -12,44 +12,62 @@
   
   <div class="card m-4">
     <div class="card-body">
-      <form>
+      <form #form="ngForm" (ngSubmit)="onFormSubmit()">
         <div class="container">
           <div class="row">
             <div class="col-12 col-md mb-3 mb-md-0">
               <label for="firstName" class="form-label">First Name:</label>
-              <input type="text" class="form-control" id="firstName">
+              <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="model.firstName">
             </div>
             <div class="col-12 col-md mb-3 mb-md-0">
               <label for="lastName" class="form-label">Last Name:</label>
-              <input type="text" class="form-control" id="lastName">
+              <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="model.lastName">
             </div>
             <div class="col-12 col-md mb-3 mb-md-0">
               <label for="email" class="form-label">Email Address:</label>
-              <input type="text" class="form-control" id="email">
+              <input type="text" class="form-control" id="email" name="email" [(ngModel)]="model.email">
             </div>
           </div>
           <div class="row">
             <div class="col-12 col-md mb-3 mt-3 mb-md-0">
-              <label for="firstName" class="form-label">First Name:</label>
-              <input type="text" class="form-control" id="firstName">
+              <label for="sex" class="form-label">Gender:</label>
+              <input type="text" class="form-control" id="sex" name="sex" [(ngModel)]="model.sex">
             </div>
             <div class="col-12 col-md mb-3 mt-3 mb-md-0">
-              <label for="lastName" class="form-label">Last Name:</label>
-              <input type="text" class="form-control" id="lastName">
+              <label for="phone" class="form-label">Phone Number:</label>
+              <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="model.phone">
             </div>
             <div class="col-12 col-md mb-3 mt-3 mb-md-0">
-              <label for="email" class="form-label">Email Address:</label>
-              <input type="text" class="form-control" id="email">
+              <label for="age" class="form-label">Age:</label>
+              <input type="text" class="form-control" id="age" name="age" [(ngModel)]="model.age">
             </div>
           </div>
-  
+          <div class="row">
+            <div class="col-12 col-md mb-3 mt-3 mb-md-0">
+              <label for="staffRole" class="form-label">Role / Position:</label>
+              <input type="text" class="form-control" id="staffRole" name="staffRole" [(ngModel)]="model.staffRole">
+            </div>
+            <div class="col-12 col-md mb-3 mt-3 mb-md-0">
+              <label for="address" class="form-label">Address:</label>
+              <input type="text" class="form-control" id="address" name="address" [(ngModel)]="model.address">
+            </div>
+          </div>
           <div class="row">
             <div class="col-12 col-md mb-3 mt-3 mb-md-0 d-flex flex-column flex-md-row">
-              <button type="button" class="btn btn-primary me-md-2 mb-2 mb-md-0">Update</button>
-              <button type="button" class="btn btn-dark">Delete</button>
+              <button type="button" class="btn btn-success me-md-2 mb-2 mb-md-0"  type="submit">Add New Staff</button>
             </div>
           </div>
         </div>
       </form>
     </div>
+  </div>
+
+  <div *ngIf="showToast" class="toast-container position-fixed top-0 end-0 p-3">
+    <ngb-toast
+      [autohide]="true"
+      [delay]="2000"
+      class="bg-success text-white"
+      (hidden)="showToast = false">
+      Staff Added Successfully!
+    </ngb-toast>
   </div>

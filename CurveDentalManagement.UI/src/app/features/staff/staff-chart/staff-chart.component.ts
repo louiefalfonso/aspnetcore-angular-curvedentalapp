@@ -17,7 +17,7 @@ export class StaffChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.createBarChart();
-    //this.createDoughnutChart();
+    this.createDoughnutChart();
   }
   
   createBarChart() {
@@ -65,7 +65,7 @@ export class StaffChartComponent implements OnInit {
     });
   }
   
-  /*
+  
   createDoughnutChart() {
     const staffRoles = this.staffs.map(staff => staff.staffRole);
     const uniqueRoles = Array.from(new Set(staffRoles));
@@ -110,6 +110,6 @@ export class StaffChartComponent implements OnInit {
       }
     });
   }
-  */  
+  
 
 }

@@ -1,28 +1,30 @@
 .chart-container {
   display: flex;
-  justify-content: center; 
-  align-items: center; 
-  margin: 0 auto; 
-  width: 90%; 
-  max-width: 1200px; 
-  height: auto; 
-  padding: 20px; 
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto;
+  width: 100%;
 }
 
-.chart {
-  width: 100%; 
-  height: auto;
+.chart:first-child {
+  width: 35%; 
+  height: auto; 
+}
+
+.chart:last-child {
+  width: 60%; 
+  height: auto; 
 }
 
 /* Responsive styles for tablet and mobile views */
 @media (max-width: 768px) {
   .chart-container {
-    width: 95%; 
+    flex-direction: column; 
+    align-items: center;
   }
-}
 
-@media (max-width: 480px) {
-  .chart-container {
-    display: none;
+  .chart {
+    width: 80%; 
+    margin-bottom: 20px; 
   }
 }
