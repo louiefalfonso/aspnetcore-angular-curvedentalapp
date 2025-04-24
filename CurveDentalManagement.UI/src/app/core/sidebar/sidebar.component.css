@@ -30,7 +30,6 @@
 }
 
 .toc .toc-item .nav>li>a {
-    font-size: 500;
     display: inline-block;
 }
 .toc .toc-item .toc-link {
@@ -40,3 +39,9 @@
 .sidebar a {
     text-decoration: none;
 }
+
+.toc-link.active {
+    font-weight: bold;
+    color: #fe5f00; /* Change to your desired active color */
+    text-decoration: underline;
+  }
