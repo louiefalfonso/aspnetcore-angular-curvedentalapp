@@ -1,1 +1,79 @@
-<p>patient-list works!</p>
+<header class="bg-body-tertiary pt-3 pb-md-3 px-3 px-lg-5 d-flex d-md-block title justify-content-center">
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between">
+      <!-- Add Button -->
+      <button class="btn btn-success ms-2 mb-2" [routerLink]="['/admin/patients/add']">Add New Patient</button>
+  
+      <!-- Search Box and Buttons -->
+      <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2">
+        <input type="text" class="form-control" placeholder="Search.." #queryText />
+        <button type="button" class="btn btn-primary" (click)="onSearch(queryText.value)">Search</button>
+        <button type="button" class="btn btn-dark" (click)="onReset(queryText)">Reset</button>
+      </div>
+    </div>
+</header>
+
+<!-- Table List -->
+<div class="card m-4">
+    <div class="card-body">
+        <ng-container *ngIf="patients$ | async as patients">
+            <div class="overflow-x-auto">
+                <table class="table table-striped table-bordered table-hover text-nowrap" *ngIf="patients.length > 0; else noResults">
+                    <thead class="text-nowrap text-center">
+                        <tr>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Date of Birth</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Insurance Provider</th>
+                            <th scope="col">Insurance Policy Number</th>
+                            <th scope="col">Insurance Expiry Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr *ngFor="let patient of patients">
+                            <td>{{ patient.firstName }} {{ patient.lastName }}</td>
+                            <td>{{ patient.age }}</td>
+                            <td>{{ patient.dateOfBirth | date: 'MM/dd/yyyy' }}</td>
+                            <td>{{ patient.phoneNumber }}</td>
+                            <td>{{ patient.insuranceProvider }}</td>
+                            <td>{{ patient.insurancePolicyNumber }}</td>
+                            <td>{{ patient.insuranceExpiryDate | date: 'MM/dd/yyyy' }}</td>
+                            <td>
+                                <button type="button" class="btn btn-custom" [routerLink]="['/admin/patients', patient.id]">Update</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- No Results Template -->
+                <ng-template #noResults>
+                    <div class="text-center text-muted py-3">
+                        <ngb-alert [dismissible]="false">
+                            No Patients Found Matching Your Search.
+                        </ngb-alert>
+                    </div>
+                </ng-template>
+
+            </div>
+        </ng-container>
+    </div>
+     <!-- Pagination -->
+    <div class="overflow-x-auto">
+        <div class="d-flex justify-content-center">
+            <div class="pagination-container">
+                <ngb-pagination
+                [collectionSize]="totalCount"
+                [(page)]="pageNumber"
+                [pageSize]="pageSize"
+                [maxSize]="10"
+                aria-label="Pagination"
+                [directionLinks]="false"
+                class="isolate inline-flex -space-x-px rounded-md shadow-xs"
+                (pageChange)="getPage($event)"
+                >
+                </ngb-pagination>
+            </div>
+        </div>
+    </div>
+</div>

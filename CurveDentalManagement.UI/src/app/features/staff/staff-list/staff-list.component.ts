@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Staff } from '../models/staff.models';
 import { Observable, of } from 'rxjs';
-import { StaffService } from '../services/staff.service';
-import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { StaffChartComponent } from '../staff-chart/staff-chart.component';
 import { map, catchError } from 'rxjs/operators';
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { StaffService } from '../services/staff.service';
+import { StaffChartComponent } from '../staff-chart/staff-chart.component';
+import { Staff } from '../models/staff.models';
 
 @Component({
   selector: 'app-staff-list',
@@ -17,6 +17,7 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class StaffListComponent implements OnInit {
 
+  // Define the observable for staffs
   staffs$?: Observable<Staff[]>;
   allStaffs: Staff[] = [];
 

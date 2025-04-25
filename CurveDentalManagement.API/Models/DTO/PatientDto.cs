@@ -12,5 +12,8 @@
         public string Age { get; set; }
         public string Address { get; set; }
         public string InsuranceDetails { get; set; }
+        public string InsuranceProvider { get; set; }
+        public string InsurancePolicyNumber { get; set; }
+        public DateTime InsuranceExpiryDate { get; set; }
     }
 }
