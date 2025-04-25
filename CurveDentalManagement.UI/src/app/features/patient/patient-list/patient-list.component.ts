@@ -2,15 +2,17 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NgbAlertModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+import { Observable,  of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 
 import { Patient } from '../models/patient.models';
 import { PatientService } from '../services/patient.service';
+import { PatientChartComponent } from '../patient-chart/patient-chart.component';
 
 @Component({
   selector: 'app-patient-list',
-  imports: [RouterModule, CommonModule, NgbPaginationModule, NgbAlertModule],
+  imports: [RouterModule, CommonModule, NgbPaginationModule, NgbAlertModule, PatientChartComponent],
   templateUrl: './patient-list.component.html',
   styleUrl: './patient-list.component.css'
 })
@@ -18,6 +20,7 @@ export class PatientListComponent implements OnInit{
 
   // Define the observable for patients
   patients$?: Observable<Patient[]>;
+  allPatients: Patient[] = [];
 
   // For sorting, filtering & pagination
   totalCount: number = 0;
@@ -33,6 +36,11 @@ export class PatientListComponent implements OnInit{
 
   // Implement ngOnInit lifecycle hook
   ngOnInit(): void {
+  
+     // Load all patients for the chart
+  this.loadAllPatients();
+
+
    this.patientService.getPatientCount()
    .subscribe({
     next: (value) => {
@@ -49,6 +57,16 @@ export class PatientListComponent implements OnInit{
     } 
    })
   }
+
+    // Implement loadAllStaffs method for chart display
+    loadAllPatients(): void {
+      this.patientService.getAllPatients().pipe(
+        map((patients: Patient[] | null) => patients ?? []), 
+        catchError(() => of([])) 
+      ).subscribe((patients) => {
+        this.allPatients = patients; 
+      });
+    }
 
   // implement search
   onSearch(query: string) {

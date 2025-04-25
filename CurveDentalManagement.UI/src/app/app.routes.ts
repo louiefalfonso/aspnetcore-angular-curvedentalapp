@@ -5,6 +5,7 @@ import { EditStaffComponent } from './features/staff/edit-staff/edit-staff.compo
 import { PatientListComponent } from './features/patient/patient-list/patient-list.component';
 import { AddPatientComponent } from './features/patient/add-patient/add-patient.component';
 import { EditPatientComponent } from './features/patient/edit-patient/edit-patient.component';
+import { PatientDetailComponent } from './features/patient/patient-detail/patient-detail.component';
 
 export const routes: Routes = [
 
@@ -31,5 +32,9 @@ export const routes: Routes = [
     {
         path:"admin/patients/:id",
         component: EditPatientComponent,
+    },
+    {
+        path:"admin/patients/details/:id",
+        component: PatientDetailComponent, 
     },
 ];

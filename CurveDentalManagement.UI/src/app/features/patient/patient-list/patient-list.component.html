@@ -12,6 +12,15 @@
     </div>
 </header>
 
+<!-- Chart Display -->
+<div class="card m-4 chart">
+    <div class="card-body">
+      <ng-container *ngIf="patients$ | async as patients">
+        <app-patient-chart [patients]="allPatients"></app-patient-chart>
+      </ng-container>
+    </div>
+  </div>
+
 <!-- Table List -->
 <div class="card m-4">
     <div class="card-body">
@@ -40,6 +49,7 @@
                             <td>{{ patient.insurancePolicyNumber }}</td>
                             <td>{{ patient.insuranceExpiryDate | date: 'MM/dd/yyyy' }}</td>
                             <td>
+                                <button type="button" class="btn btn-custom-outline me-2" [routerLink]="['/admin/patients/details/', patient.id]">View</button>
                                 <button type="button" class="btn btn-custom" [routerLink]="['/admin/patients', patient.id]">Update</button>
                             </td>
                         </tr>
