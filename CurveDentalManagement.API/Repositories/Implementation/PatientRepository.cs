@@ -26,6 +26,52 @@ namespace CurveDentalManagement.API.Repositories.Implementation
             return await dbContext.Patients.FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        // Get All Patients
+        public async Task<IEnumerable<Patient>> GetAllAsync
+            (
+                // add filtering, sorting & pagination
+                string? query = null,
+                string? sortBy = null,
+                string? sortDirection = null,
+                int? pageNumber = 1,
+                int? pageSize = 100
+            )
+        {
+            // query
+            var patients = dbContext.Patients.AsQueryable();
+
+            //filter
+            if (string.IsNullOrWhiteSpace(query) == false)
+            {
+                patients = patients.Where(
+                    x => x.FirstName.Contains(query) ||
+                    x.LastName.Contains(query) ||
+                    x.Gender.Contains(query)
+                );
+            }
+
+            // sorting
+            if (string.IsNullOrWhiteSpace(sortBy) == false)
+            {
+                if (string.Equals(sortBy, "FirstName", StringComparison.OrdinalIgnoreCase))
+                {
+                    var isAsc = string.Equals(sortDirection, "asc", StringComparison.OrdinalIgnoreCase) ? true : false;
+                    patients = isAsc ? patients.OrderBy(x => x.FirstName) : patients.OrderByDescending(x => x.FirstName);
+                }
+                if (string.Equals(sortBy, "LasttName", StringComparison.OrdinalIgnoreCase))
+                {
+                    var isAsc = string.Equals(sortDirection, "asc", StringComparison.OrdinalIgnoreCase) ? true : false;
+                    patients = isAsc ? patients.OrderBy(x => x.LastName) : patients.OrderByDescending(x => x.LastName);
+                }
+            }
+
+            // pagination
+            var skipResults = (pageNumber - 1) * pageSize;
+            patients = patients.Skip(skipResults ?? 0).Take(pageSize ?? 100);
+
+            return await patients.ToListAsync();
+        }
+
 
         // Update Patient
         public async Task<Patient?> UpdateAsync(Patient patient)
@@ -55,6 +101,16 @@ namespace CurveDentalManagement.API.Repositories.Implementation
             await dbContext.SaveChangesAsync();
             return existingPatient;
         }
+
+        // Get Count
+        public async Task<int> GetCount()
+        {
+            return await dbContext.Patients.CountAsync();
+        }
+
+        
     }
 }
+
+
 

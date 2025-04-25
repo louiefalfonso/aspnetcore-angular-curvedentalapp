@@ -33,6 +33,9 @@ namespace CurveDentalManagement.API.Controllers
                 Age = request.Age,
                 Address = request.Address,
                 InsuranceDetails = request.InsuranceDetails,
+                InsuranceProvider = request.InsuranceProvider,
+                InsurancePolicyNumber = request.InsurancePolicyNumber,
+                InsuranceExpiryDate = request.InsuranceExpiryDate,
             };
 
             // add new patient to repository
@@ -51,6 +54,9 @@ namespace CurveDentalManagement.API.Controllers
                 Age = patient.Age,
                 Address = patient.Address,
                 InsuranceDetails = patient.InsuranceDetails,
+                InsuranceProvider = patient.InsuranceProvider,
+                InsurancePolicyNumber = patient.InsurancePolicyNumber,
+                InsuranceExpiryDate = patient.InsuranceExpiryDate,
             };
 
             return Ok(response);
@@ -84,8 +90,50 @@ namespace CurveDentalManagement.API.Controllers
                 Age = patient.Age,
                 Address = patient.Address,
                 InsuranceDetails = patient.InsuranceDetails,
+                InsuranceProvider = patient.InsuranceProvider,
+                InsurancePolicyNumber = patient.InsurancePolicyNumber,
+                InsuranceExpiryDate = patient.InsuranceExpiryDate,
             };
 
+            return Ok(response);
+        }
+
+        // Get All Staffs
+        [HttpGet]
+        public async Task<IActionResult> GetAllPatients
+            (
+                // add filtering, sorting & pagination
+                [FromQuery] string? query,
+                [FromQuery] string? sortBy,
+                [FromQuery] string? sortDirection,
+                [FromQuery] int? pageNumber,
+                [FromQuery] int? pageSize
+            )
+        {
+            // get all patients from repository
+            var patients = await patientRepository.GetAllAsync(query, sortBy, sortDirection, pageNumber, pageSize);
+
+            // map Domain model to DTO
+            var response = new List<PatientDto>();
+            foreach (var patient in patients)
+            {
+                response.Add(new PatientDto
+                {
+                    Id = patient.Id,
+                    FirstName = patient.FirstName,
+                    LastName = patient.LastName,
+                    DateOfBirth = patient.DateOfBirth,
+                    Gender = patient.Gender,
+                    Email = patient.Email,
+                    PhoneNumber = patient.PhoneNumber,
+                    Age = patient.Age,
+                    Address = patient.Address,
+                    InsuranceDetails = patient.InsuranceDetails,
+                    InsuranceProvider = patient.InsuranceProvider,
+                    InsurancePolicyNumber = patient.InsurancePolicyNumber,
+                    InsuranceExpiryDate = patient.InsuranceExpiryDate,
+                });
+            }
             return Ok(response);
         }
 
@@ -114,6 +162,9 @@ namespace CurveDentalManagement.API.Controllers
                 Age = request.Age,
                 Address = request.Address,
                 InsuranceDetails = request.InsuranceDetails,
+                InsuranceProvider = request.InsuranceProvider,
+                InsurancePolicyNumber = request.InsurancePolicyNumber,
+                InsuranceExpiryDate = request.InsuranceExpiryDate,
             };
 
             // update patient in repository
@@ -138,6 +189,9 @@ namespace CurveDentalManagement.API.Controllers
                 Age = patient.Age,
                 Address = patient.Address,
                 InsuranceDetails = patient.InsuranceDetails,
+                InsuranceProvider = patient.InsuranceProvider,
+                InsurancePolicyNumber = patient.InsurancePolicyNumber,
+                InsuranceExpiryDate = patient.InsuranceExpiryDate,
             };
             return Ok(response);
         }
@@ -169,9 +223,23 @@ namespace CurveDentalManagement.API.Controllers
                 Age = patient.Age,
                 Address = patient.Address,
                 InsuranceDetails = patient.InsuranceDetails,
+                InsuranceProvider = patient.InsuranceProvider,
+                InsurancePolicyNumber = patient.InsurancePolicyNumber,
+                InsuranceExpiryDate = patient.InsuranceExpiryDate,
             };
             return Ok(response);
         }
+
+        // Get Count
+        [HttpGet]
+        [Route("count")]
+        public async Task<IActionResult> GetStaffsTotal()
+        {
+            var count = await patientRepository.GetCount();
+            return Ok(count);
+        }
+
+       
     }
 }
 

@@ -11,22 +11,17 @@ namespace CurveDentalManagement.API.Repositories.Interface
         Task<Patient?> UpdateAsync(Patient patient);
 
         Task<Patient?> DeleteAsync(Guid id);
+
+        Task<int> GetCount();
+
+        Task<IEnumerable<Patient>> GetAllAsync
+           (
+               // add filtering, sorting & pagination
+               string? query = null,
+               string? sortBy = null,
+               string? sortDirection = null,
+               int? pageNumber = 1,
+               int? pageSize = 100
+           );
     }
 }
-
-
-/*
- *   Task<IEnumerable<Staff>> GetAllAsync
-            (
-                // add filtering, sorting & pagination
-                string? query = null,
-                string? sortBy = null,
-                string? sortDirection = null,
-                int? pageNumber = 1,
-                int? pageSize = 100
-            );
-
-  
-        
-        Task<int> GetCount()
- */
