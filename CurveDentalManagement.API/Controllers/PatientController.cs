@@ -100,7 +100,7 @@ namespace CurveDentalManagement.API.Controllers
 
         // Get All Staffs
         [HttpGet]
-        public async Task<IActionResult> GetAllPatients
+        public async Task<IActionResult> GetAllPatientsAsync
             (
                 // add filtering, sorting & pagination
                 [FromQuery] string? query,
@@ -233,7 +233,7 @@ namespace CurveDentalManagement.API.Controllers
         // Get Count
         [HttpGet]
         [Route("count")]
-        public async Task<IActionResult> GetStaffsTotal()
+        public async Task<IActionResult> GetPatientsTotal()
         {
             var count = await patientRepository.GetCount();
             return Ok(count);
