@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
+
 import { Staff } from '../models/staff.models';
 import { StaffService } from '../services/staff.service';
 import { UpdateStaffRequest } from '../models/update-staff-request.models';
-import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-staff',

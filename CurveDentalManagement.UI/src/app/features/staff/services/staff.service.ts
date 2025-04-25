@@ -20,7 +20,7 @@ export class StaffService {
     return this.http.post<void>(`${environment.apiBaseUrl}/staffs`, model);
   }
 
-  // get all patients
+  // get all staffs
   getAllStaffs(query?: string, sortBy?: string, sortDirection?: string, pageNumber?: number, pageSize?: number,):Observable<Staff[]>{
 
     let params = new HttpParams();
