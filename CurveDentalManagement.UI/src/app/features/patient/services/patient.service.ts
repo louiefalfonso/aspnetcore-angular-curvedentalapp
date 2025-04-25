@@ -17,7 +17,7 @@ export class PatientService {
   constructor(private http: HttpClient) { }
 
   // add new patient
-  addNewePatient(model: AddPatientRequest) : Observable<void>{
+  addNewPatient(model: AddPatientRequest) : Observable<void>{
     return this.http.post<void>(`${environment.apiBaseUrl}/patients`, model);
   }
 

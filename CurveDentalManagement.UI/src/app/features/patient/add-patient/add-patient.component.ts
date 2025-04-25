@@ -49,7 +49,7 @@ export class AddPatientComponent implements OnDestroy {
 
   // add onFormSubmit
   onFormSubmit() {
-      this.addPatientSubscription = this.patientService.addNewePatient(this.model)
+      this.addPatientSubscription = this.patientService.addNewPatient(this.model)
         .subscribe({
           next: (response) => {
             this.showToast = true; 
