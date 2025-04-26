@@ -37,11 +37,10 @@ export class PatientListComponent implements OnInit{
   // Implement ngOnInit lifecycle hook
   ngOnInit(): void {
   
-     // Load all patients for the chart
+  // Load all patients for the chart
   this.loadAllPatients();
 
-
-   this.patientService.getPatientCount()
+  this.patientService.getPatientCount()
    .subscribe({
     next: (value) => {
       this.totalCount = value;

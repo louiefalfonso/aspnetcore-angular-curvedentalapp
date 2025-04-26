@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { AddPatientRequest } from '../models/add-patient-request.models';
 import { Patient } from '../models/patient.models';
-import { Staff } from '../../staff/models/staff.models';
 import { UpdatePatientRequest } from '../models/update-patient-request.models';
 
 @Injectable({
