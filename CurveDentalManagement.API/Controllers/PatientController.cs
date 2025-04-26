@@ -238,8 +238,6 @@ namespace CurveDentalManagement.API.Controllers
             var count = await patientRepository.GetCount();
             return Ok(count);
         }
-
-       
     }
 }
 
