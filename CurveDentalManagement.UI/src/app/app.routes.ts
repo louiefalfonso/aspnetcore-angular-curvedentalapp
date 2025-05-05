@@ -7,6 +7,9 @@ import { AddPatientComponent } from './features/patient/add-patient/add-patient.
 import { EditPatientComponent } from './features/patient/edit-patient/edit-patient.component';
 import { PatientDetailComponent } from './features/patient/patient-detail/patient-detail.component';
 import { DoctorListComponent } from './features/doctor/doctor-list/doctor-list.component';
+import { AddDoctorComponent } from './features/doctor/add-doctor/add-doctor.component';
+import { EditDoctorComponent } from './features/doctor/edit-doctor/edit-doctor.component';
+import { DoctorDetailComponent } from './features/doctor/doctor-detail/doctor-detail.component';
 
 export const routes: Routes = [
 
@@ -41,5 +44,17 @@ export const routes: Routes = [
     {
         path:"admin/doctors",
         component: DoctorListComponent,
+    },
+    {
+        path:"admin/doctors/add",
+        component: AddDoctorComponent,
+    },
+    {
+        path:"admin/doctors/:id",
+        component: EditDoctorComponent,
+    },
+    {
+        path:"admin/doctors/details/:id",
+        component: DoctorDetailComponent,
     },
 ];

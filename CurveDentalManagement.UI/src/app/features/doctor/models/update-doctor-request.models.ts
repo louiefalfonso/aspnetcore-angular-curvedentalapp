@@ -1,4 +1,4 @@
-export interface UpdateDoctorRqeust{
+export interface UpdateDoctorRequest{
     firstName: string;
     lastName: string;
     email: string;
