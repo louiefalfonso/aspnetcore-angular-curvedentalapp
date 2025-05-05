@@ -39,8 +39,8 @@
                             <td>{{ doctor.department }}</td>
                             
                             <td>
-                                <button type="button" class="btn btn-custom-outline me-2" >View</button>
-                                <button type="button" class="btn btn-custom">Update</button>
+                                <button type="button" class="btn btn-custom-outline me-2" [routerLink]="['/admin/doctors/details/', doctor.id]" >View</button>
+                                <button type="button" class="btn btn-custom" [routerLink]="['/admin/doctors', doctor.id]">Update</button>
                             </td>
                         </tr>
                     </tbody>

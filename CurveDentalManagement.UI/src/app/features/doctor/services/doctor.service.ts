@@ -5,7 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { AddDoctorRequest } from '../models/add-doctor-request.models';
 import { Observable } from 'rxjs';
 import { Doctor } from '../models/doctor.models';
-import { UpdateDoctorRqeust } from '../models/update-doctor-request.models';
+import { UpdateDoctorRequest } from '../models/update-doctor-request.models';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +57,7 @@ export class DoctorService {
   }
 
   // update doctor
-  updateDoctor(id: string, updateDoctorRequest: UpdateDoctorRqeust): Observable<Doctor>{
+  updateDoctor(id: string, updateDoctorRequest: UpdateDoctorRequest): Observable<Doctor>{
       return this.http.put<Doctor>(`${environment.apiBaseUrl}/doctors/${id}`, updateDoctorRequest);
   }
 
