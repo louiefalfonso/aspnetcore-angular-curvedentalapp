@@ -15,5 +15,6 @@
         public string DentalSchool { get; set; }
         public string OfficeAddress { get; set; }
         public string EmergencyContact { get; set; }
+        public ICollection<Treatment> Treatments { get; set; }
     }
 }

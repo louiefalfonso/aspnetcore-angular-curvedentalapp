@@ -4,6 +4,7 @@ using CurveDentalManagement.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CurveDentalManagement.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250507193752_Created Treatment DB & API")]
+    partial class CreatedTreatmentDBAPI
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,11 +75,16 @@ namespace CurveDentalManagement.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("TreatmentId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("YearsOfExperience")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TreatmentId");
 
                     b.ToTable("Doctors");
                 });
@@ -232,34 +240,16 @@ namespace CurveDentalManagement.API.Migrations
                     b.ToTable("Treatments");
                 });
 
-            modelBuilder.Entity("DoctorTreatment", b =>
+            modelBuilder.Entity("CurveDentalManagement.API.Models.Domain.Doctor", b =>
                 {
-                    b.Property<Guid>("DoctorsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TreatmentsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("DoctorsId", "TreatmentsId");
-
-                    b.HasIndex("TreatmentsId");
-
-                    b.ToTable("DoctorTreatment");
+                    b.HasOne("CurveDentalManagement.API.Models.Domain.Treatment", null)
+                        .WithMany("Doctors")
+                        .HasForeignKey("TreatmentId");
                 });
 
-            modelBuilder.Entity("DoctorTreatment", b =>
+            modelBuilder.Entity("CurveDentalManagement.API.Models.Domain.Treatment", b =>
                 {
-                    b.HasOne("CurveDentalManagement.API.Models.Domain.Doctor", null)
-                        .WithMany()
-                        .HasForeignKey("DoctorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CurveDentalManagement.API.Models.Domain.Treatment", null)
-                        .WithMany()
-                        .HasForeignKey("TreatmentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Doctors");
                 });
 #pragma warning restore 612, 618
         }
