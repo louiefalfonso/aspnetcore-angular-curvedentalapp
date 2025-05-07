@@ -3,7 +3,7 @@
     public class UpdateTreatmentRequestDto
     {
         public string TreatmentName { get; set; }
-        public string TreatmentCame { get; set; }
+        public string TreatmentCode { get; set; }
         public string Description { get; set; }
         public string Duration { get; set; }
         public string Cost { get; set; }
