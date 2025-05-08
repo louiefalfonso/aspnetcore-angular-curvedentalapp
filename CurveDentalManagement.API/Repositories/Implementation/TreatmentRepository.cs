@@ -14,7 +14,6 @@ namespace CurveDentalManagement.API.Repositories.Implementation
             this.dbContext = dbContext;
         }
 
-
         // add new treatment
         public async Task<Treatment> CreateAsync(Treatment treatment)
         {
@@ -69,6 +68,54 @@ namespace CurveDentalManagement.API.Repositories.Implementation
 
             return await treatments.Include(x => x.Doctors).ToListAsync();
 
+        }
+
+        // update treatment
+        public async Task<Treatment?> UpdateAsync(Treatment treatment)
+        {
+            // get treatment by Id
+            var existingTreatment = await dbContext.Treatments.Include(x => x.Doctors).FirstOrDefaultAsync(x=>x.Id == treatment.Id);
+
+            // check if treatment is null
+            if (existingTreatment == null)
+            {
+                return null;
+            }
+
+            // update treatment
+            dbContext.Entry(existingTreatment).CurrentValues.SetValues(treatment);
+
+            // update doctor
+            existingTreatment.Doctors = treatment.Doctors;
+
+            // save changes
+            await dbContext.SaveChangesAsync();
+
+            return treatment;
+
+        }
+
+
+        // delete treatment
+        public async Task<Treatment?> DeleteAsync(Guid id)
+        {
+           var existingTreatment = await dbContext.Treatments.FirstOrDefaultAsync(x=>x.Id == id);
+
+            if (existingTreatment is null)
+            {
+                return null;
+            }
+
+            dbContext.Treatments.Remove(existingTreatment);
+            await dbContext.SaveChangesAsync();
+            return existingTreatment;
+
+        }
+
+        // get total count
+        public async Task<int> GetCount()
+        {
+            return await dbContext.Treatments.CountAsync();
         }
     }
 }
