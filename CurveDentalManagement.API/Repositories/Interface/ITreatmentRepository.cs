@@ -5,7 +5,7 @@ namespace CurveDentalManagement.API.Repositories.Interface
     public interface ITreatmentRepository
     {
         Task<Treatment> CreateAsync(Treatment treatment);
-
+       
         Task<Treatment?> GetByIdAsync(Guid id);
 
         Task<IEnumerable<Treatment>> GetAllAsync

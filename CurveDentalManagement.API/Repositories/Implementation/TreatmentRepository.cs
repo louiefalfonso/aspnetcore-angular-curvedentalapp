@@ -14,7 +14,6 @@ namespace CurveDentalManagement.API.Repositories.Implementation
             this.dbContext = dbContext;
         }
 
-
         // add new treatment
         public async Task<Treatment> CreateAsync(Treatment treatment)
         {

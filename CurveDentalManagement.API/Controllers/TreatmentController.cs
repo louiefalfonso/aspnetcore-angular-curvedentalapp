@@ -32,6 +32,7 @@ namespace CurveDentalManagement.API.Controllers
                 TreatmentName = request.TreatmentName,
                 TreatmentCode = request.TreatmentCode,
                 Description = request.Description,
+                Duration = request.Duration,
                 Cost = request.Cost,
                 InsuranceCoverage = request.InsuranceCoverage,
                 InsuranceCoverageAmount = request.InsuranceCoverageAmount,
@@ -55,7 +56,7 @@ namespace CurveDentalManagement.API.Controllers
             }
 
             // add new treatment to repository
-            await treatmentRepository.CreateAsync(treatment);
+            treatment = await treatmentRepository.CreateAsync(treatment);
 
             // map domain model to dto
             var response = new TreatmentDto
@@ -64,6 +65,7 @@ namespace CurveDentalManagement.API.Controllers
                 TreatmentName = treatment.TreatmentName,
                 TreatmentCode = treatment.TreatmentCode,
                 Description = treatment.Description,
+                Duration = request.Duration,
                 Cost = treatment.Cost,
                 InsuranceCoverage = treatment.InsuranceCoverage,
                 InsuranceCoverageAmount = treatment.InsuranceCoverageAmount,
@@ -115,6 +117,7 @@ namespace CurveDentalManagement.API.Controllers
                 TreatmentName = treatment.TreatmentName,
                 TreatmentCode = treatment.TreatmentCode,
                 Description = treatment.Description,
+                Duration = treatment.Duration,
                 Cost = treatment.Cost,
                 InsuranceCoverage = treatment.InsuranceCoverage,
                 InsuranceCoverageAmount = treatment.InsuranceCoverageAmount,
@@ -170,6 +173,7 @@ namespace CurveDentalManagement.API.Controllers
                         TreatmentName = treatment.TreatmentName,
                         TreatmentCode = treatment.TreatmentCode,
                         Description = treatment.Description,
+                        Duration = treatment.Duration,
                         Cost = treatment.Cost,
                         InsuranceCoverage = treatment.InsuranceCoverage,
                         InsuranceCoverageAmount = treatment.InsuranceCoverageAmount,
@@ -212,6 +216,7 @@ namespace CurveDentalManagement.API.Controllers
                 TreatmentName = request.TreatmentName,
                 TreatmentCode = request.TreatmentCode,
                 Description = request.Description,
+                Duration = request.Duration,
                 Cost = request.Cost,
                 InsuranceCoverage = request.InsuranceCoverage,
                 InsuranceCoverageAmount = request.InsuranceCoverageAmount,
@@ -251,6 +256,7 @@ namespace CurveDentalManagement.API.Controllers
                 TreatmentName = treatment.TreatmentName,
                 TreatmentCode = treatment.TreatmentCode,
                 Description = treatment.Description,
+                Duration = treatment.Duration,
                 Cost = treatment.Cost,
                 InsuranceCoverage = treatment.InsuranceCoverage,
                 InsuranceCoverageAmount = treatment.InsuranceCoverageAmount,
@@ -303,6 +309,7 @@ namespace CurveDentalManagement.API.Controllers
                 TreatmentName = deletedTreatment.TreatmentName,
                 TreatmentCode = deletedTreatment.TreatmentCode,
                 Description = deletedTreatment.Description,
+                Duration = deletedTreatment.Duration,
                 Cost = deletedTreatment.Cost,
                 InsuranceCoverage = deletedTreatment.InsuranceCoverage,
                 InsuranceCoverageAmount = deletedTreatment.InsuranceCoverageAmount,
