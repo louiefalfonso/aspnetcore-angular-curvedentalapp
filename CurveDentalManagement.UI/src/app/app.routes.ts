@@ -10,6 +10,10 @@ import { DoctorListComponent } from './features/doctor/doctor-list/doctor-list.c
 import { AddDoctorComponent } from './features/doctor/add-doctor/add-doctor.component';
 import { EditDoctorComponent } from './features/doctor/edit-doctor/edit-doctor.component';
 import { DoctorDetailComponent } from './features/doctor/doctor-detail/doctor-detail.component';
+import { TreatmentListComponent } from './features/treatments/treatment-list/treatment-list.component';
+import { AddTreatmentComponent } from './features/treatments/add-treatment/add-treatment.component';
+import { EditTreatmentComponent } from './features/treatments/edit-treatment/edit-treatment.component';
+import { TreatmentDetailComponent } from './features/treatments/treatment-detail/treatment-detail.component';
 
 export const routes: Routes = [
 
@@ -56,5 +60,21 @@ export const routes: Routes = [
     {
         path:"admin/doctors/details/:id",
         component: DoctorDetailComponent,
+    },
+    {
+        path:"admin/treatments",
+        component: TreatmentListComponent,
+    },
+    {
+        path:"admin/treatments/add",
+        component: AddTreatmentComponent,
+    },
+    {
+        path:"admin/treatments/:id",
+        component: EditTreatmentComponent,
+    },
+    {
+        path:"admin/treatments/details/:id",
+        component: TreatmentDetailComponent,
     },
 ];
