@@ -13,7 +13,7 @@ import { UpdateDoctorRequest } from '../models/update-doctor-request.models';
 export class DoctorService {
 
   // add constructor
-  constructor(private http:|HttpClient) { }
+  constructor(private http:HttpClient) { }
 
   // add new doctor
   addNewDoctor(model:AddDoctorRequest): Observable<void>{
