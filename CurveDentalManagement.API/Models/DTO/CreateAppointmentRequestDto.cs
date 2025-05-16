@@ -7,7 +7,7 @@
         public string AppointmentCode { get; set; }
         public DateOnly AppointmentDate { get; set; }
         public TimeOnly AppointmentTime { get; set; }
-        public Guid Doctors {  get; set; }
-        public Guid Patientd {  get; set; }
+        public Guid[] Doctors {  get; set; }
+        public Guid[] Patients {  get; set; }
     }
 }

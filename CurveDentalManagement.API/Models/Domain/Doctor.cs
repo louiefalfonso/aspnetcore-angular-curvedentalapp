@@ -16,5 +16,6 @@
         public string OfficeAddress { get; set; }
         public string EmergencyContact { get; set; }
         public ICollection<Treatment> Treatments { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }

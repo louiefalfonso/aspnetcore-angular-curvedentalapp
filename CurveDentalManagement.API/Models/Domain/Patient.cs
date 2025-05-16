@@ -15,5 +15,6 @@
         public string InsuranceProvider { get; set; }
         public string InsurancePolicyNumber { get; set; }
         public DateTime InsuranceExpiryDate { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }
