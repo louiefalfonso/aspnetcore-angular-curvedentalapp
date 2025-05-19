@@ -213,6 +213,7 @@ namespace CurveDentalManagement.API.Controllers
             // map dto to domain model
             var treatment = new Treatment
             {
+                Id = id,
                 TreatmentName = request.TreatmentName,
                 TreatmentCode = request.TreatmentCode,
                 Description = request.Description,

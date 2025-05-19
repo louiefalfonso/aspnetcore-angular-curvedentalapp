@@ -41,6 +41,7 @@ namespace CurveDentalManagement.API.Repositories.Implementation
                 treatments = treatments.Where(x=>
                     x.TreatmentName.Contains(query) ||
                     x.TreatmentCode.Contains(query) ||
+                    x.Cost.Contains(query) ||
                     x.Doctors.Any(d => d.FirstName.Contains(query) || d.LastName.Contains(query)));
             }
 
@@ -58,6 +59,13 @@ namespace CurveDentalManagement.API.Repositories.Implementation
                 {
                     var isAsc = string.Equals(sortDirection, "asc", StringComparison.OrdinalIgnoreCase) ? true : false;
                     treatments = isAsc ? treatments.OrderBy(x => x.TreatmentCode) : treatments.OrderByDescending(x => x.TreatmentCode);
+                }
+
+
+                if (string.Equals(sortBy, "doctors", StringComparison.OrdinalIgnoreCase))
+                {
+                    var isAsc = string.Equals(sortDirection, "asc", StringComparison.OrdinalIgnoreCase) ? true : false;
+                    treatments = isAsc ? treatments.OrderBy(x => x.Doctors) : treatments.OrderByDescending(x => x.Doctors);
                 }
 
             }
