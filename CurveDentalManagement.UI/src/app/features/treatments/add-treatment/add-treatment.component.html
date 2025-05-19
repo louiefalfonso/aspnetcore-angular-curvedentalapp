@@ -69,8 +69,8 @@
                     <div class="col-12 col-md mb-3 mb-md-0">
                         <label for="doctors" class="form-label">Assigned Doctor(s):</label>
                         <ng-container *ngIf="doctors$ | async as doctors">
-                            <select class="form-select" aria-label="Assigned Doctors" name="doctors" id="doctors" [(ngModel)]="model.doctors" required multi>
-                                <option *ngFor="let doctor of doctors" [value]="doctor.id" class="p-2"> Dr. {{ doctor.firstName }} {{ doctor.lastName }} </option>
+                            <select class="form-select" aria-label="Assigned Doctors" name="doctors" id="doctors" [(ngModel)]="model.doctors" required multiple>
+                                <option *ngFor="let doctor of doctors" [value]="doctor.id" class="p-2"> Dr. {{ doctor.firstName }} {{ doctor.lastName }} - {{doctor.specialization}}</option>
                             </select>
                         </ng-container>
                     </div>

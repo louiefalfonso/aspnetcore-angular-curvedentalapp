@@ -24,7 +24,7 @@ routeSubscription?: Subscription;
 editDoctorSubscription?: Subscription;
 deleteDoctorSubscription? : Subscription;
 
-// add patient object
+// add doctor object
 model?: Doctor;
 
 // Add toast visibility property
