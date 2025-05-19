@@ -20,9 +20,8 @@
                 <table class="table table-striped table-bordered table-hover text-nowrap" *ngIf="treatments.length > 0; else noResults">
                      <thead class="text-nowrap text-center">
                         <tr>
-                             <th scope="col">Treatment Code</th>
+                            <th scope="col">Treatment Code</th>
                             <th scope="col">Treatment Name</th>
-                           
                             <th scope="col">Duration</th>
                             <th scope="col">Cost</th>
                             <th scope="col">Assigned Doctor</th>
@@ -44,7 +43,6 @@
                                 <button type="button" class="btn btn-custom-outline me-2" [routerLink]="['/admin/treatments/details/', treatment.id]" >View</button>
                                 <button type="button" class="btn btn-custom" [routerLink]="['/admin/treatments', treatment.id]">Update</button>
                             </td>
-
                          </tr>
                      </tbody>
                 </table>
@@ -58,5 +56,23 @@
                 </ng-template>
              </div>
          </ng-container>
+    </div>
+     <!-- Pagination -->
+     <div class="overflow-x-auto">
+        <div class="d-flex justify-content-center">
+            <div class="pagination-container">
+                <ngb-pagination
+                [collectionSize]="totalCount"
+                [(page)]="pageNumber"
+                [pageSize]="pageSize"
+                [maxSize]="10"
+                aria-label="Pagination"
+                [directionLinks]="false"
+                class="isolate inline-flex -space-x-px rounded-md shadow-xs"
+                (pageChange)="getPage($event)"
+                >
+                </ngb-pagination>
+            </div>
+        </div>
     </div>
 </div>    

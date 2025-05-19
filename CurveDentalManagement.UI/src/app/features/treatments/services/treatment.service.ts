@@ -5,7 +5,6 @@ import { AddTreatmentRequest } from '../models/add-treatment-request.models';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Treatment } from '../models/treatment.models';
-import { Doctor } from '../../doctor/models/doctor.models';
 import { UpdateTreatmentRequest } from '../models/update-treatment-request.models';
 
 @Injectable({
