@@ -31,7 +31,7 @@ export class AddDoctorComponent implements OnDestroy {
     private http: HttpClient,
     private router: Router)
     {
-      this.model ={
+      this.model = {
         firstName: "",
         lastName: "",
         email: "",

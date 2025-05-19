@@ -1,1 +1,89 @@
-<p>add-treatment works!</p>
+<header class="bg-body-tertiary pt-3 pb-md-3 px-3 px-lg-5 d-flex d-md-block title justify-content-center">
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between mb-3" >
+      <!-- Title -->
+      <h1 class="start me-auto me-md-none h3 ">Add New Treatment Form</h1>
+
+       <!-- Back Button -->
+       <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2 ">
+        <button type="button" class="btn btn-dark" [routerLink]="['/admin/treatments']">Back</button>
+      </div>
+    </div>
+</header>
+
+<div class="card m-4">
+    <div class="card-body">
+        <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+             <div class="container">
+                <div class="row">
+                    <h1 class="pb-2 border-bottom mt-3 display-6">Treatment Information</h1>
+                    <div class="col-12 col-md mb-3 mb-md-0">
+                      <label for="treatmentName" class="form-label">Treatment Name:</label>
+                      <input type="text" class="form-control" id="treatmentName" name="treatmentName" [(ngModel)]="model.treatmentName">
+                    </div>
+                     <div class="col-12 col-md mb-3 mb-md-0">
+                      <label for="treatmentCode" class="form-label">Treatment Code:</label>
+                      <input type="text" class="form-control" id="treatmentCode" name="treatmentName" [(ngModel)]="model.treatmentCode">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 col-md mb-3 mb-md-0">
+                        <label for="duration" class="form-label">Duration:</label>
+                        <input type="text" class="form-control" id="duration" name="duration" [(ngModel)]="model.duration">
+                    </div>
+                    <div class="col-12 col-md mb-3 mb-md-0">
+                        <label for="cost" class="form-label">Cost (GBP): </label>
+                        <input type="text" class="form-control" id="cost" name="cost" [(ngModel)]="model.cost">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 col-md mb-3 mb-md-0">
+                        <label for="description" class="form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description" [(ngModel)]="model.description"></textarea>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 col-md mb-3 mb-md-0">
+                        <label for="insuranceCoverage" class="form-label">Insurance Coverage: </label>
+                        <input type="text" class="form-control" id="insuranceCoverage" name="insuranceCoverage" [(ngModel)]="model.insuranceCoverage">
+                    </div>
+                    <div class="col-12 col-md mb-3 mb-md-0">
+                        <label for="insuranceCoverageAmount" class="form-label">Insurance Coverage Amount: </label>
+                        <input type="text" class="form-control" id="insuranceCoverageAmount" name="insuranceCoverageAmount" [(ngModel)]="model.insuranceCoverageAmount">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 col-md mb-3 mb-md-0">
+                        <label for="followUpCare" class="form-label">Follow Up Care:</label>
+                        <textarea class="form-control" id="followUpCare" name="followUpCare" [(ngModel)]="model.followUpCare"></textarea>
+                    </div>
+                    <div class="col-12 col-md mb-3 mb-md-0">
+                        <label for="riskBenefits" class="form-label">Risk & Benefits:</label>
+                        <textarea class="form-control" id="riskBenefits" name="riskBenefits" [(ngModel)]="model.riskBenefits"></textarea>
+                    </div>
+                    <div class="col-12 col-md mb-3 mb-md-0">
+                        <label for="indications" class="form-label">Indications:</label>
+                        <textarea class="form-control" id="indications" name="indications" [(ngModel)]="model.indications"></textarea>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 col-md mb-3 mb-md-0">
+                        <label for="doctors" class="form-label">Assigned Doctor(s):</label>
+                        <ng-container *ngIf="doctors$ | async as doctors">
+                            <select class="form-select" aria-label="Assigned Doctors" name="doctors" id="doctors" [(ngModel)]="model.doctors" required multiple>
+                                <option *ngFor="let doctor of doctors" [value]="doctor.id" class="p-2"> Dr. {{ doctor.firstName }} {{ doctor.lastName }} - {{doctor.specialization}}</option>
+                            </select>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 col-md mb-3 mt-3 mb-md-0 d-flex flex-column flex-md-row">
+                      <button type="button" class="btn btn-success me-md-2 mb-2 mb-md-0"  type="submit">Add New Treatment</button>
+                      <button type="button" class="btn btn-dark me-md-2 mb-2 mb-md-0"  type="button" [routerLink]="['/admin/treatments']">Back to Treatment List</button>
+                    </div>
+                </div>
+                
+             </div>
+        </form>
+    </div>
+</div>
+
