@@ -1,7 +1,6 @@
 ﻿using Azure.Core;
 using CurveDentalManagement.API.Models.Domain;
 using CurveDentalManagement.API.Models.DTO;
-using CurveDentalManagement.API.Repositories.Implementation;
 using CurveDentalManagement.API.Repositories.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +16,7 @@ namespace CurveDentalManagement.API.Controllers
         private readonly IPatientRepository patientRepository;
 
         public AppointmentsController(
-            IAppointmentRepository appointmentRepository,
+            IAppointmentRepository appointmentRepository, 
             IDoctorRepository doctorRepository,
             IPatientRepository patientRepository)
         {
@@ -259,6 +258,7 @@ namespace CurveDentalManagement.API.Controllers
             // map dto to domain model
             var appointment = new Appointment
             {
+                Id = id,
                 Status = request.Status,
                 Remarks = request.Remarks,
                 AppointmentCode = request.AppointmentCode,
