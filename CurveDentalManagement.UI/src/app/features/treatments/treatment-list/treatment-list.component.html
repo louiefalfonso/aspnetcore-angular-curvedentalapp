@@ -34,7 +34,7 @@
                             <td>{{ treatment.treatmentName }}</td>
                             <td>{{ treatment.duration }}</td>
                             <td>{{ treatment.cost }}</td>
-                            <td>
+                            <td class="text-wrap">
                                 <span *ngFor="let doctor of treatment.doctors; let i = index">
                                    Dr. {{ doctor.firstName }} {{ doctor.lastName }} <span *ngIf="i < treatment.doctors.length - 1">,</span>
                                 </span>
