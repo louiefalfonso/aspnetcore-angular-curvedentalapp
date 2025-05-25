@@ -13,6 +13,5 @@ namespace CurveDentalManagement.API.Data
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Treatment> Treatments { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<Planning> Plannings { get; set; }
     }
 }

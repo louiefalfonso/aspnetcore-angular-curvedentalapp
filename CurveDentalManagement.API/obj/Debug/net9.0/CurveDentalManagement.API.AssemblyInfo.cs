@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CurveDentalManagement.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e835d7bfddcacd42e5d6f97990d0e2e43b59412")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5dc3c4ccc3ad67a2affc230c43b0d7a4d13c1c0d")]
 [assembly: System.Reflection.AssemblyProductAttribute("CurveDentalManagement.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CurveDentalManagement.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
