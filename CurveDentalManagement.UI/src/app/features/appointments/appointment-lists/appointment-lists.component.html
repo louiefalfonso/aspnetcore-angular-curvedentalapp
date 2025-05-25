@@ -61,4 +61,22 @@
               </div>
         </ng-container>
     </div>
+     <!-- Pagination -->
+     <div class="overflow-x-auto">
+        <div class="d-flex justify-content-center">
+            <div class="pagination-container">
+                <ngb-pagination
+                [collectionSize]="totalCount"
+                [(page)]="pageNumber"
+                [pageSize]="pageSize"
+                [maxSize]="10"
+                aria-label="Pagination"
+                [directionLinks]="false"
+                class="isolate inline-flex -space-x-px rounded-md shadow-xs"
+                (pageChange)="getPage($event)"
+                >
+                </ngb-pagination>
+            </div>
+        </div>
+    </div>
 </div>    
