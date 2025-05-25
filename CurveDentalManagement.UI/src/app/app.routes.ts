@@ -14,6 +14,10 @@ import { TreatmentListComponent } from './features/treatments/treatment-list/tre
 import { AddTreatmentComponent } from './features/treatments/add-treatment/add-treatment.component';
 import { EditTreatmentComponent } from './features/treatments/edit-treatment/edit-treatment.component';
 import { TreatmentDetailComponent } from './features/treatments/treatment-detail/treatment-detail.component';
+import { AppointmentListsComponent } from './features/appointments/appointment-lists/appointment-lists.component';
+import { AddAppointmentComponent } from './features/appointments/add-appointment/add-appointment.component';
+import { EditAppointmentComponent } from './features/appointments/edit-appointment/edit-appointment.component';
+import { AppointmentDetailsComponent } from './features/appointments/appointment-details/appointment-details.component';
 
 export const routes: Routes = [
 
@@ -77,4 +81,22 @@ export const routes: Routes = [
         path:"admin/treatments/details/:id",
         component: TreatmentDetailComponent,
     },
+    {
+        path:"admin/appointments",
+        component: AppointmentListsComponent,
+    },
+    {
+        path:"admin/appointments/add",
+        component: AddAppointmentComponent
+    },
+    {
+        path:"admin/appointments/:id",
+        component: EditAppointmentComponent
+    },
+    {
+        path:"admin/appointments/details/:id",
+        component: AppointmentDetailsComponent
+    },
+    
+
 ];

@@ -5,5 +5,5 @@ export interface AddAppointmentRequest {
     appointmentDate: Date;
     appointmentTime: string;
     doctors: string[];
-    patient: string[];
+    patients: string[];
 }
