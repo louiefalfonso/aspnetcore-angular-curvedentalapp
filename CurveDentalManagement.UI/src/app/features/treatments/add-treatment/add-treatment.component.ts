@@ -31,7 +31,7 @@ export class AddTreatmentComponent implements OnInit, OnDestroy {
 // add constructor
   constructor(
     private treatmentService: TreatmentService,
-     private doctorService: DoctorService,
+    private doctorService: DoctorService,
     private http: HttpClient,
     private router: Router
   ){
