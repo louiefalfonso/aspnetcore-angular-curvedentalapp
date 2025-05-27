@@ -1,1 +1,94 @@
-<p>edit-appointment works!</p>
+<header class="bg-body-tertiary pt-3 pb-md-3 px-3 px-lg-5 d-flex d-md-block title justify-content-center">
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between mb-3" >
+      <!-- Title -->
+      <h1 class="start me-auto me-md-none h3 ">Update Appointment Form</h1>
+
+       <!-- Back Button -->
+       <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2 ">
+        <button type="button" class="btn btn-dark" [routerLink]="['/admin/appointments']">Back</button>
+      </div>
+    </div>
+</header>
+
+<div class="card m-4">
+    <div class="card-body">
+        <ng-container *ngIf="model; else notFound">
+            <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+                 <div class="container">
+                     <div class="row">
+                        <h1 class="pb-2 border-bottom mt-3 display-6">Appointment Information</h1>
+                        <div class="col-12 col-md mb-3 mb-md-0 mt-3">
+                            <label for="appointmentCode" class="form-label">Appointment Code:</label>
+                            <input type="text" class="form-control" id="appointmentCode" name="appointmentCode" [(ngModel)]="model.appointmentCode">
+                        </div>
+                        <div class="col-12 col-md mb-3 mb-md-0 mt-3">
+                            <label for="appointmentDate" class="form-label">Appointment Date:</label>
+                            <div class="input-group">
+                                <input class="form-control" id="appointmentDate" type="date" name="appointmentDate" [ngModel]="model.appointmentDate | date: 'yyyy-MM-dd'" (ngModelChange)="model.appointmentDate = $event" value="{{model.appointmentDate}}"/>       
+                            </div>
+                        </div>
+                        <div class="col-12 col-md mb-3 mb-md-0 mt-3">
+                            <label for="appointmentTime" class="form-label">Appointment Time:</label>
+                            <input type="text" class="form-control" id="appointmentTime" name="appointmentTime" [(ngModel)]="model.appointmentTime">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 col-md mb-3 mb-md-0">
+                            <label for="status" class="form-label">Status:</label>
+                            <textarea class="form-control" id="status" name="status" [(ngModel)]="model.status"></textarea>
+                        </div>
+                        <div class="col-12 col-md mb-3 mb-md-0">
+                            <label for="remarks" class="form-label">Remarks:</label>
+                            <textarea class="form-control" id="remarks" name="remarks" [(ngModel)]="model.remarks"></textarea>
+                        </div>
+                    </div>
+                        <div class="row mt-3">
+                        <div class="col-12 col-md mb-3 mb-md-0">
+                            <label for="patients" class="form-label">Patient's Name:</label>
+                            <ng-container *ngIf="patients$ | async as patients">
+                                <select class="form-select" aria-label="Patient Name" name="patients" id="patients" [(ngModel)]="selectedPatient" required>
+                                    <option value="">-- Select Patient's Name --</option>
+                                <option *ngFor="let patient of patients" [value]="patient.id" class="p-2"> {{ patient.firstName }} {{ patient.lastName }}</option>
+                                </select>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 col-md mb-3 mb-md-0">
+                            <label for="doctors" class="form-label">Assigned Doctor(s):</label>
+                            <ng-container *ngIf="doctors$ | async as doctors">
+                                <select class="form-select" aria-label="Assigned Doctors" name="doctors" id="doctors" [(ngModel)]="selectedDoctor" required multiple>
+                                    <option *ngFor="let doctor of doctors" [value]="doctor.id" class="p-2"> Dr. {{ doctor.firstName }} {{ doctor.lastName }} - {{doctor.specialization}}</option>
+                                </select>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 col-md mb-3 mt-3 mb-md-0 d-flex flex-column flex-md-row">
+                            <button type="button" class="btn btn-custom me-md-2 mb-2 mb-md-0" type="submit">Update Appointment</button>
+                            <button type="button" class="btn btn-danger me-md-2 mb-2 mb-md-0" type="button" (click)="onDelete()">Delete Appointment</button>
+                            <button type="button" class="btn btn-dark me-md-2 mb-2 mb-md-0"  type="button" [routerLink]="['/admin/appointments']">Back to Appointment List</button>
+                        </div>
+                    </div>
+                 </div>
+            </form>
+        </ng-container>
+        <ng-template #notFound>
+            <div class="alert alert-warning mt-3" role="alert">
+             Appointment Not Found!
+            </div>
+        </ng-template>
+    </div>
+</div> 
+
+<div *ngIf="showToast" class="toast-container position-fixed top-0 end-0 p-3">
+    <ngb-toast
+      [autohide]="true"
+      [delay]="2000"
+      class="bg-success text-white"
+      (hidden)="showToast = false">
+      {{ toastMessage }}
+    </ngb-toast>
+</div>
+
+
