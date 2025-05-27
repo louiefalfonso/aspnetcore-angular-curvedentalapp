@@ -13,6 +13,8 @@
 <!-- Table List -->
 <div class="card m-4">
     <div class="card-body">
+
+        <!-- Patient Information Section -->
         <ng-container *ngIf="patients$ | async as patient">
             <div class="overflow-x-auto">
                 <h4 class="pb-2 border-bottom mt-3">Personal Information</h4>
@@ -62,5 +64,41 @@
 
             </div>    
         </ng-container>
+
+        <!-- Appointment History Section -->
+        <ng-container *ngIf="appointments$ | async as appointments">
+            <div *ngIf="appointments.length > 0">
+                <div class="overflow-x-auto">
+                    <h4 class="pb-2 border-bottom mt-3">Appointment History</h4>
+                    <table class="table table-striped table-bordered table-hover text-nowrap mt-4">
+                            <thead class="text-nowrap text-center">
+                                <tr>
+                                    <th scope="col">Appointment Code</th>
+                                    <th scope="col">Appointment Date</th>
+                                    <th scope="col">Appointment Time</th>
+                                    <th scope="col">Assigned Doctor</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr *ngFor="let appointment of appointments">
+                                    <td>{{ appointment.appointmentCode }}</td>
+                                    <td>{{ appointment.appointmentDate | date:'M/d/yy' }}</td>
+                                    <td>{{ appointment.appointmentTime}}</td>
+                                    <td class="text-wrap">
+                                        <span *ngFor="let doctor of appointment.doctors; let i = index">
+                                        Dr. {{ doctor.firstName }} {{ doctor.lastName }} <span *ngIf="i < appointment.doctors.length - 1">,</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ appointment.status }}</td>
+                                    <td>{{ appointment.remarks }}</td>
+                                </tr>
+                            </tbody>
+                    </table>        
+                </div>        
+            </div>
+        </ng-container>
+
     </div>
 </div>

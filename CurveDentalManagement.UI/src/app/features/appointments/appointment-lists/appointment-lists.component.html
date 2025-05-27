@@ -31,7 +31,7 @@
                     <tbody class="text-center">
                          <tr *ngFor="let appointment of appointments">
                             <td>{{ appointment.appointmentCode }}</td>
-                            <td>{{ appointment.appointmentDate | date:'short' }}</td>
+                            <td>{{ appointment.appointmentDate | date:'M/d/yy' }}</td>
                             <td>{{ appointment.appointmentTime}}</td>
                              <td class="text-wrap">
                                 <span *ngFor="let patient of appointment.patients; let i = index">

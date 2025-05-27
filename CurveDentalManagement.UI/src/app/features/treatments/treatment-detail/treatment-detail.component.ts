@@ -33,11 +33,11 @@ export class TreatmentDetailComponent implements OnInit {
     // get treatment Id from the route
     this.TreatmentsId = this.route.snapshot.paramMap.get('id') || '';
 
-    // fetch doctor details & return single object
+    // fetch treatment details & return single object
     this.treatments$ = this.treatmentService.getTreatmentById(this.TreatmentsId); 
 
     
-    // Fetch doctor filtered by the prescription ID
+    // Fetch doctor filtered by the treatment ID
     this.doctors$ = this.treatments$.pipe(
       map(treatment => treatment?.doctors || []),
       catchError(error => {
