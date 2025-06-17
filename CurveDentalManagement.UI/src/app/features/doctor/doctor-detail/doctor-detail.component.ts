@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Doctor } from '../models/doctor.models';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { DoctorService } from '../services/doctor.service';
 import { Appointment } from '../../appointments/models/appointment.models';
 import { AppointmentService } from '../../appointments/services/appointment.service';
