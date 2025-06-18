@@ -3,6 +3,7 @@
     public class UpdateBillingRequestDto
     {
         public string BillingCode { get; set; }
+        public string BillingStatus { get; set; }
         public string TotalAmount { get; set; }
         public string PaymentStatus { get; set; }
         public string PaymentMethod { get; set; }

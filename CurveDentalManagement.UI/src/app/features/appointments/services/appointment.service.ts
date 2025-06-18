@@ -66,11 +66,9 @@ export class AppointmentService {
     return this.http.delete<Appointment>(`${environment.apiBaseUrl}/appointments/${id}`);
   }
 
-  // get treatment count
+  // get appointment count
   getAppointmentCount(): Observable<number> {
     return this.http.get<number>(`${environment.apiBaseUrl}/appointments/count`);
   }
-
-
 
 }
