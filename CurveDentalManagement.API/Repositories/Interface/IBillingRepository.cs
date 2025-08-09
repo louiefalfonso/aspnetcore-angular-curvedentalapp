@@ -7,5 +7,8 @@ namespace CurveDentalManagement.API.Repositories.Interface
         Task<Billing> CreateAsync(Billing billing);
         Task<Billing?> GetByIdAsync(Guid id);
         Task<IEnumerable<Billing>> GetAllAsync(string? query = null, string? sortBy = null, string? sortDirection = null, int? pageNumber = 1, int? pageSize = 100);
+        Task<Billing?> UpdateAsync(Billing billing);
+        Task<Billing?> DeleteAsync(Guid id);
+        Task<int> GetCount();
     }
 }

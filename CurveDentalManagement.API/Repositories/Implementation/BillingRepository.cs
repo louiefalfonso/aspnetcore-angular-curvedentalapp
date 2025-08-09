@@ -2,6 +2,7 @@
 using CurveDentalManagement.API.Models.Domain;
 using CurveDentalManagement.API.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CurveDentalManagement.API.Repositories.Implementation
 {
@@ -65,7 +66,56 @@ namespace CurveDentalManagement.API.Repositories.Implementation
         {
             return await dbContext.Billings.Include(x => x.Treatments).Include(x => x.Patients).FirstOrDefaultAsync(x => x.Id == id);
         }
+
+        // update billing
+        public async Task<Billing?> UpdateAsync(Billing billing)
+        {
+            // Fetch billing by ID
+            var existingBilling = await dbContext.Billings.Include(x => x.Treatments).Include(x => x.Patients).FirstOrDefaultAsync(x => x.Id == billing.Id);
+
+
+            // Check if existing billing is null
+            if (existingBilling == null)
+            {
+                return null;
+            }
+
+           // Update Appointment
+            dbContext.Entry(existingBilling).CurrentValues.SetValues(billing);
+
+            // Update Treatment
+            existingBilling.Treatments = billing.Treatments;
+
+            // Update Patient
+            existingBilling.Patients = billing.Patients;
+
+            // Save Changes
+            await dbContext.SaveChangesAsync();
+
+            return existingBilling;
+        }
+
+        // delete billing
+        public async Task<Billing?> DeleteAsync(Guid id)
+        {
+            // Fetch The Billing By ID
+            var existingBilling = await dbContext.Billings.FirstOrDefaultAsync(x => x.Id == id);
+
+            // Check if Existing Billing is Null
+            if (existingBilling != null)
+            {
+                dbContext.Billings.Remove(existingBilling);
+                await dbContext.SaveChangesAsync();
+                return existingBilling;
+            }
+
+            return null;
+        }
+
+        // get all billing count
+        public async Task<int> GetCount()
+        {
+            return await dbContext.Billings.CountAsync();
+        }
     }
 }
-
-
