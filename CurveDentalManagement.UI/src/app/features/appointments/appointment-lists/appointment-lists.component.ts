@@ -14,7 +14,7 @@ import { AppointmentService } from '../services/appointment.service';
 })
 export class AppointmentListsComponent implements OnInit {
 
-  // Define the observable for treatments
+  // Define the observable for appointments
   appointments$? : Observable<Appointment[]>;
 
   // For sorting, filtering & pagination
@@ -113,9 +113,4 @@ export class AppointmentListsComponent implements OnInit {
       this.pageSize
     );
   }
-
-
-
-
-
 }
